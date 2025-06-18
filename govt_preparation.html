@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Government Job Preparation</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://img.freepik.com/premium-vector/swastik-icon-swastika-sign-vector-hinduism-sign-hindu-symbol-spiritual-symbol_1156220-338.jpg?w=740" />
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Resets */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    color: #1f2937;
+    min-height: 100vh;
+  }
+  a {
+    color: #2563eb;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  /* Layout & Grid */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 24px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 700;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-weight: 600;
+    padding: 8px 16px;
+    background: rgba(255 255 255 / 0.2);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  nav a:hover, nav a:focus {
+    background: rgba(255 255 255 / 0.4);
+  }
+
+  main {
+    margin-top: 32px;
+  }
+  section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 32px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    margin-bottom: 32px;
+  }
+  section h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    color: #1e293b;
+  }
+  section h3 {
+    font-size: 1.25rem;
+    margin-top: 24px;
+    margin-bottom: 12px;
+    color: #2563eb;
+  }
+
+  ul.content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 16px;
+  }
+  ul.content-list li {
+    background: #e0e7ff;
+    padding: 16px 20px;
+    border-radius: 10px;
+    color: #1e293b;
+    box-shadow: 0 2px 6px rgba(99,102,241,0.3);
+    transition: background-color 0.3s ease;
+  }
+  ul.content-list li:hover, ul.content-list li:focus-within {
+    background: #c7d2fe;
+  }
+  ul.content-list li a {
+    font-weight: 600;
+    color: #4338ca;
+    display: block;
+    margin-bottom: 8px;
+  }
+  ul.content-list li p {
+    font-size: 0.9rem;
+    color: #334155;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    nav {
+      justify-content: flex-start;
+    }
+    ul.content-list {
+      grid-template-columns: 1fr;
+    }
+    section {
+      padding: 20px;
+    }
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 16px;
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+<header role="banner">
+  <h1> Government Job Prep</h1>
+  <nav aria-label="Primary Navigation">
+    <a href="#books" tabindex="0">Books</a>
+    <a href="#job-alerts" tabindex="0">Job Alerts</a>
+    <a href="#syllabus" tabindex="0">Syllabus</a>
+    <a href="#previous-papers" tabindex="0">Previous Papers</a>
+    <a href="#current affairs" tabindex="0">Current Affairs</a>
+    <a href="#newspaper" tabindex="0">Daily Newspaper</a>
+    <a href="#tips" tabindex="0">Preparation Tips</a>
+    <a href="#contact" tabindex="0">contact information</a>
+  </nav>
+</header>
+
+<main>
+  <section id="books" tabindex="-1" aria-labelledby="books-title">
+    <h2 id="books-title">Recommended Books for Government Exams</h2>
+
+<img  align="right" src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="IMG" width="300">
+    <h3 id="appsc-books-subsection">APPSC Books</h3>
+    <ul class="content-list" aria-labelledby="appsc-books-subsection">
+      <li>
+        <a href="./appsc-books.html" target="_blank" rel="noopener" aria-label="APPSC Group 2 Prilims Books">APPSC Group 2  Books</a>
+        <p>Detailed coverage of APPSC prilims exam topics including history, geography, and polity,Quantitative_Aptitude_Prelims,.</p>
+      </li>
+      
+      <li>
+        <a href="./appsc-books.html" target="_blank" rel="noopener" aria-label="APPSC Quantitative Aptitude book">APPSC Group 2 Mains Books</a>
+        <p>Practice book tailored for APPSC GROUP2 MAINS.</p>
+      </li>
+    </ul>
+    <h3 id="railway-books-subsection">Railway Books</h3>
+    <ul class="content-list" aria-labelledby="railway-books-subsection">
+      <li>
+        <a href="https://example.com/railway-general-studies" target="_blank" rel="noopener" aria-label="Railway General Studies book">Railway General Studies</a>
+        <p>Comprehensive guide for Railway exams covering all relevant subjects.</p>
+      </li>
+      <li>
+        <a href="https://example.com/railway-technical" target="_blank" rel="noopener" aria-label="Railway Technical books">Railway Technical Books</a>
+        <p>Books focused on technical posts preparation in Railways.</p>
+      </li>
+    </ul>
+
+    <h3 id="ssc-books-subsection">SSC Exam Books</h3>
+    <ul class="content-list" aria-labelledby="ssc-books-subsection">
+      <li>
+        <a href="https://example.com/ssc-general-studies" target="_blank" rel="noopener" aria-label="SSC General Studies book">SSC General Studies</a>
+        <p>Wide-ranging SSC exam preparatory book focused on current affairs and general knowledge.</p>
+      </li>
+      <li>
+        <a href="https://example.com/ssc-reasoning" target="_blank" rel="noopener" aria-label="SSC Reasoning Ability book">SSC Reasoning Ability</a>
+        <p>Practice questions for SSC reasoning sections with explanations.</p>
+      </li>
+    </ul>
+
+    <h3 id="upsc-books-subsection">UPSC Books</h3>
+    <ul class="content-list" aria-labelledby="upsc-books-subsection">
+      <li>
+        <a href="https://example.com/upsc-general-studies" target="_blank" rel="noopener" aria-label="UPSC General Studies book">UPSC General Studies</a>
+        <p>Primary study material for UPSC prelims and mains examinations.</p>
+      </li>
+      <li>
+        <a href="https://example.com/upsc-ethics" target="_blank" rel="noopener" aria-label="UPSC Ethics paper book">UPSC Ethics and Integrity</a>
+        <p>Important books covering ethics, integrity, and aptitude for UPSC aspirants.</p>
+      </li>
+    </ul>
+
+  </section>
+
+  <section id="job-alerts" tabindex="-1" aria-labelledby="job-alerts-title">
+    <h2 id="job-alerts-title">Latest Government Job Alerts</h2>
+    <ul class="content-list">
+      <li>
+        <a href="https://www.freejobalert.com/employment-news/" target="_blank" rel="noopener" aria-label="View detailed job alert for UPSC Civil Services 2024">Latest Job Alert</a>
+        <p>Notification released, apply before deadline. Qualification and eligibility details available.</p>
+      </li>
+      <li>
+        <a href="https://www.freejobalert.com/ap-government-jobs/" target="_blank" rel="noopener" aria-label="View detailed job alert for SBI PO recruitment 2024">Andhra Pradesh</a>
+        <p>Online application started. Get details on exam dates and syllabus here.</p>
+      </li>
+       <li>
+        <a href="https://www.freejobalert.com/telangana-government-jobs/" target="_blank" rel="noopener" aria-label="View detailed job alert for Railway Recruitment Board 2024">Telangana</a>
+        <p>Vacancies announced for various posts across India. Download official notification.</p>
+      </li>
+       
+      <li>
+        <a href="https://www.freejobalert.com/railway-jobs/" target="_blank" rel="noopener" aria-label="View detailed job alert for Railway Recruitment Board 2024">Railway Recruitment Board </a>
+        <p>Vacancies announced for various posts across India. Download official notification.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="syllabus" tabindex="-1" aria-labelledby="syllabus-title">
+    <h2 id="syllabus-title">Exam Syllabus Overview</h2>
+    <ul class="content-list">
+      <li>
+        <a href="https://www.freejobalert.com/syllabus/" target="_blank" rel="noopener" aria-label="Detailed syllabus for UPSC Preliminary and Mains exams">Syllabus</a>
+        <p>Covers history, polity, economics, environment, and ethics among other subjects.</p>
+      </li>
+      <li>
+        <a href="https://www.freejobalert.com/exam-pattern/" target="_blank" rel="noopener" aria-label="Detailed syllabus for SBI PO exam">Exam Pattern</a>
+        <p>Reasoning, quantitative aptitude, English language, and general awareness subjects.</p>
+      </li>
+      <li>
+        <a href="https://www.freejobalert.com/selection-process/" target="_blank" rel="noopener" aria-label="Detailed syllabus for Railway Recruitment Board exams">Selection Process</a>
+        <p>Mathematics, general intelligence, general awareness, and technical subjects by post.</p>
+      </li>
+      <li>
+        <a href="https://www.freejobalert.com/admit-card/" target="_blank" rel="noopener" aria-label="Detailed syllabus for Railway Recruitment Board exams">Admitcard</a>
+        <p>Mathematics, general intelligence, general awareness, and technical subjects by post.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="previous-papers" tabindex="-1" aria-labelledby="previous-papers-title">
+    <h2 id="previous-papers-title">Previous Years' Question Papers</h2>
+    <ul class="content-list">
+      <li>
+        <a href="https://example.com/papers/upsc" target="_blank" rel="noopener" aria-label="Download previous years UPSC question papers">UPSC Previous Papers</a>
+        <p>Collection of last 10 years prelims and mains papers with solutions.</p>
+      </li>
+      <li>
+        <a href="https://example.com/papers/sbi" target="_blank" rel="noopener" aria-label="Download previous years SBI PO question papers">SBI PO Previous Papers</a>
+        <p>Practice papers and mock tests with answers to boost your exam readiness.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="tips" tabindex="-1" aria-labelledby="tips-title">
+    <h2 id="tips-title">Preparation Tips & Strategies</h2>
+    <ul class="content-list">
+      <li>
+        <a href="https://example.com/tips/time-management" target="_blank" rel="noopener" aria-label="Read tips on time management for government exams">Time Management</a>
+        <p>Effective study schedules and prioritization techniques for better results.</p>
+      </li>
+      <li>
+        <a href="https://example.com/tips/memory-techniques" target="_blank" rel="noopener" aria-label="Read memory and retention techniques for exam preparation">Memory Techniques</a>
+        <p>Mnemonics and other methods to retain vast syllabus information efficiently.</p>
+      </li>
+      <li>
+        <a href="https://example.com/tips/mock-tests" target="_blank" rel="noopener" aria-label="Read guide to importance of mock tests in exam preparation">Mock Test Practice</a>
+        <p>Importance of regular mock tests and analyzing results to improve exam performance.</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  &copy; 2024 Daily Government Job Prep. All rights reserved.
+</footer>
+</body>
+</html>
+
