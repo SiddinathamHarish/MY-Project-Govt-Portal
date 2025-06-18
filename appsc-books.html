@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>APPSC GROUPS 2 BOOKS - Mains & Prelims with Preview</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://placehold.co/64x64/6366f1/ffffff?text=PDF" />
+<!-- Google Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    color: #1e293b;
+    min-height: 100vh;
+  }
+  a {
+    color: #4f46e5;
+    text-decoration: none;
+  }
+  a:hover, a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #4f46e5;
+  }
+  header p {
+    font-size: 1rem;
+    color: #475569;
+    margin-top: 8px;
+  }
+
+  section {
+    background: white;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+    border-radius: 16px;
+    padding: 24px 32px;
+    margin-bottom: 40px;
+  }
+  section h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #3730a3;
+    border-bottom: 2px solid #e0e7ff;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+  }
+
+  ul.book-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  ul.book-list li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0e7ff;
+  }
+  ul.book-list li:last-child {
+    border-bottom: none;
+  }
+
+  .pdf-icon {
+    background: #6366f1;
+    color: white;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .pdf-icon .material-icons {
+    font-size: 28px;
+  }
+
+  .book-info {
+    flex-grow: 1;
+  }
+  .book-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .book-description {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    color: #64748b;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #4f46e5;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    user-select: none;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn:hover, .btn:focus {
+    background: #4338ca;
+    outline: none;
+  }
+  .btn .material-icons {
+    font-size: 20px;
+  }
+
+  /* Modal Styles */
+  #preview-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  #preview-modal.active {
+    display: flex;
+  }
+  #modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 700px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #modal-header {
+    padding: 12px 20px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  #modal-close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #pdf-preview-frame {
+    flex-grow: 1;
+    width: 100%;
+    border: none;
+    height: 80vh;
+  }
+
+  @media (max-width: 640px) {
+    ul.book-list li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .actions {
+      margin-top: 8px;
+    }
+    #modal-content {
+      width: 95vw;
+      height: 80vh;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>APPSC GROUP 2 Books Store</h1>
+      <p>Browse and download important government exam preparation books. Preview before you download.</p>
+    </header>
+
+    <section aria-labelledby="prelims-books-title">
+      <h2 id="prelims-books-title">Prelims Books</h2>
+      <ul class="book-list">
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Mental Ability Books</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1U-bESf2Dw8sBOPmnYX8qU1E_uKFqm9er?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1U-bESf2Dw8sBOPmnYX8qU1E_uKFqm9er?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Current Affairs</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1EbUYzKKCowXEFKub8-gGTW08PZg5FyEc?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1EbUYzKKCowXEFKub8-gGTW08PZg5FyEc?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Geography</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1nvnhZZUrL3ZuENbR_k7ca3-z8Di_GFcr?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1nvnhZZUrL3ZuENbR_k7ca3-z8Di_GFcr?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Indian History</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1ThXDkZ4wqI0LJnIt3Hmr6emXg8nOexTw?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1ThXDkZ4wqI0LJnIt3Hmr6emXg8nOexTw?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Indian Society</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1NS7ARAXJ9-vH3ZwM3fYk102AySFEzuBs?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1NS7ARAXJ9-vH3ZwM3fYk102AySFEzuBs?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Model Papers</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1gYoUGpiIhCjoUQ_n0A1wjiJRWDJGcNwT?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1gYoUGpiIhCjoUQ_n0A1wjiJRWDJGcNwT?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Syllabus</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/file/d/1CsZrlm5ECq9MZYQ-rl3TV2FFQjGHG_Yg/view?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/file/d/1CsZrlm5ECq9MZYQ-rl3TV2FFQjGHG_Yg/view?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">New Districts</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/file/d/1650dgJQAchER81dc-rdLgdxkNSSKaIHV/view?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/file/d/1650dgJQAchER81dc-rdLgdxkNSSKaIHV/view?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">CPT</p>
+            <p class="book-description">A comprehensive guide covering all Prelims level general studies topics.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/17cUVwKIBeZqv27t-hA0hlt49Q-Erbfa2?usp=sharing" aria-label="Preview General Studies Prelims Guide PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/17cUVwKIBeZqv27t-hA0hlt49Q-Erbfa2?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Prelims_Guide.pdf" 
+               aria-label="Download General Studies Prelims Guide PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Quantitative Aptitude Prelims</p>
+            <p class="book-description">Practice and theory book for prelims quantitative aptitude exams.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/6366f1/ffffff?text=Quantitative+Aptitude+Prelims.pdf" aria-label="Preview Quantitative Aptitude Prelims PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://placehold.co/600x800/6366f1/ffffff?text=Quantitative+Aptitude+Prelims.pdf" 
+               class="btn" 
+               download="Quantitative_Aptitude_Prelims.pdf" 
+               aria-label="Download Quantitative Aptitude Prelims PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="mains-books-title">
+      <h2 id="mains-books-title">Mains Books</h2>
+      <ul class="book-list">
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">AP History</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general  syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://drive.google.com/drive/folders/1IDpC8N5zsnSOvH_J4U3-sDD36LAFwp0J?usp=sharing" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1IDpC8N5zsnSOvH_J4U3-sDD36LAFwp0J?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Indian Polity</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general studies syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=General+Studies+Mains+Advanced.pdf" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1_PxgxJZ0Oq3OXHzxsoMxMHO1B_cJmPXl?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Indian Economy</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general studies syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=General+Studies+Mains+Advanced.pdf" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1jJ0nuIXrUr7QJwrEMDlfOtjxidl-J9-p?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Science and Technologies</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general studies syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=General+Studies+Mains+Advanced.pdf" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/14Vw9GvCVH85-hoxt6C1kpNg7eT_8_jbE?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Model Papers</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general studies syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=General+Studies+Mains+Advanced.pdf" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1Ud5fath4DDwF3wDIL-hQIOT3x7NIjA9I?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">CA</p>
+            <p class="book-description">In-depth analysis and extensive coverage of Mains general studies syllabus.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=General+Studies+Mains+Advanced.pdf" aria-label="Preview General Studies Mains Advanced PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://drive.google.com/drive/folders/1G-7UVtvVtOABiknao77klJKMh7I9JUAY?usp=sharing" 
+               class="btn" 
+               download="General_Studies_Mains_Advanced.pdf" 
+               aria-label="Download General Studies Mains Advanced PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div class="pdf-icon" aria-hidden="true"><span class="material-icons">picture_as_pdf</span></div>
+          <div class="book-info">
+            <p class="book-title">Essay Writing Mains</p>
+            <p class="book-description">Guide to essay writing and topic analysis for mains examinations.</p>
+          </div>
+          <div class="actions">
+            <button class="btn preview-btn" data-pdf="https://placehold.co/600x800/4f46e5/ffffff?text=Essay+Writing+Mains.pdf" aria-label="Preview Essay Writing Mains PDF">Preview <span class="material-icons">visibility</span></button>
+            <a href="https://placehold.co/600x800/4f46e5/ffffff?text=Essay+Writing+Mains.pdf" 
+               class="btn" 
+               download="Essay_Writing_Mains.pdf" 
+               aria-label="Download Essay Writing Mains PDF">
+               Download <span class="material-icons">file_download</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Modal for PDF Preview -->
+  <div id="preview-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div id="modal-content">
+      <header id="modal-header">
+        <h2 id="modal-title">PDF Preview</h2>
+        <button id="modal-close-btn" aria-label="Close preview">&times;</button>
+      </header>
+      <iframe id="pdf-preview-frame" src="" title="PDF Preview"></iframe>
+    </div>
+  </div>
+
+<script>
+  const previewButtons = document.querySelectorAll('.preview-btn');
+  const modal = document.getElementById('preview-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const pdfFrame = document.getElementById('pdf-preview-frame');
+  const lastFocusedElement = {elem: null};
+
+  function openModal(pdfUrl, title) {
+    pdfFrame.src = pdfUrl;
+    modal.classList.add('active');
+    modal.querySelector('#modal-title').textContent = title;
+    lastFocusedElement.elem = document.activeElement;
+    modal.focus();
+  }
+  function closeModal() {
+    modal.classList.remove('active');
+    pdfFrame.src = '';
+    if(lastFocusedElement.elem) {
+      lastFocusedElement.elem.focus();
+    }
+  }
+
+  previewButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pdfUrl = btn.dataset.pdf;
+      const bookTitle = btn.closest('li').querySelector('.book-title').textContent;
+      openModal(pdfUrl, bookTitle);
+    });
+  });
+
+  modalCloseBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => {
+    if(e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === "Escape" && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+</html>
